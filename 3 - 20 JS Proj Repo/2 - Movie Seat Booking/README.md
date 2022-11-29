@@ -1,4 +1,4 @@
-# This is the Movie Seat Booking Web App
+# Movie Seat Booking
 
 This project will:
 * Work with Local Storage
