@@ -20,9 +20,13 @@ function showSuccess(input, message) {
 
 // Check email is valid
 // But keep in mind that one should not rely only upon JavaScript validation. JavaScript can easily be disabled. This should be validated on the server side as well.
-function isValidEmail(email) {
+function checkEmail(input) {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
+    if(re.test(input.value.trim())) {
+        showSuccess(input);
+    } else {
+        showError(input, 'Email is not valid');
+    }
 }
 
 // Check required fields
@@ -36,6 +40,24 @@ function checkRequired(inputArr) {
     });
 }
 
+// Check input length
+function checkLength(input, min, max) {
+    if(input.value.length < min) {
+        showError(input, `${getFieldName(input)} must be at least ${min} characters`);
+    } else if(input.value.length > max) {
+        showError(input, `${getFieldName(input)} must be less than ${max} characters`);
+    } else {
+        showSuccess(input);
+    }
+}
+
+// Check passwords match
+function checkPasswordsMatch(input1, input2) {
+    if(input1.value !== input2.value) {
+        showError(input2, 'Passwords do not match');
+    }
+}
+
 // Get fieldName
 function getFieldName(input) {
     return input.id.charAt(0).toUpperCase() + input.id.slice(1);
@@ -46,4 +68,8 @@ form.addEventListener('submit', function(e) {
     e.preventDefault();
 
     checkRequired([username, email, password, password2]);
+    checkLength(username, 3, 15);
+    checkLength(password, 6, 25);
+    checkEmail(email);
+    checkPasswordsMatch(password, password2);
 });
