@@ -20,7 +20,7 @@ async function getwords() {
 
 getwords().then(function(result) { // This will return an array of words
     let selectedWord = result[Math.floor(Math.random() * result.length)]; // This will select a word from the array of words
-    // return selectedWord;
+    // This will show the way
     console.log(selectedWord);
 
     let allTheLetters = ['a', 'e', 'i', 'o', 'u', 'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z'];
@@ -49,6 +49,45 @@ getwords().then(function(result) { // This will return an array of words
             popup.style.display = 'flex';
         }
     }
+
+    // Update the wrong letters
+    function updateWrongLettersEl() {
+        console.log('Update wrong');
+    }
+
+    // Show notification
+    function showNotification() {
+        notification.classList.add('show');
+
+        setTimeout(() => {
+            notification.classList.remove('show');
+        }, 2000);
+    }
+
+    // Keydown letter press
+    window.addEventListener('keydown', e => {
+        if(e.key >= 'a' && e.key <= 'z') {
+            const letter = e.key;
+
+            if(selectedWord.includes(letter)) {
+                if(!correctLetters.includes(letter)) {
+                    correctLetters.push(letter);
+
+                    displayWord();
+                } else {
+                    showNotification();
+                }
+            } else {
+                if(!wrongLetters.includes(letter)) {
+                    wrongLetters.push(letter);
+
+                    updateWrongLettersEl();
+                } else {
+                    showNotification();
+                }
+            }
+        }
+    });
 
     displayWord();
 })
