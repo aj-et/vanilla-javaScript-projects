@@ -8,3 +8,5 @@
 * 20 Web Projects with vanilla JavaScript
 * The Web Developer Bootcamp 2022
 * 100 Days of Code: The Complete Python Programming
+
+> For markdown syntax guide go to this [link](https://www.markdownguide.org/basic-syntax/).
