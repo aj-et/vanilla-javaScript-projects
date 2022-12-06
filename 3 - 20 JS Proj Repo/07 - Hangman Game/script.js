@@ -1,6 +1,6 @@
 const wordEl = document.getElementById('word');
 const wrongLettersEl = document.getElementById('wrong-letters');
-const playAgainBtn = document.getElementById('play-again');
+const playAgainBtn = document.getElementById('play-button');
 const popup = document.getElementById('popup-container');
 const notification = document.getElementById('notification-container');
 const finalMessage = document.getElementById('final-message');
@@ -9,7 +9,7 @@ const figureParts = document.querySelectorAll('.figure-part');
 
 // This will fetch a random word each time
 async function getwords() {
-    let words_url = 'https://random-word-api.herokuapp.com/word';
+    let words_url = 'https://random-word-api.herokuapp.com/all';
     try {
         let response = await fetch(words_url);
         return await response.json();
@@ -21,9 +21,9 @@ async function getwords() {
 getwords().then(function(result) { // This will return an array of words
     let selectedWord = result[Math.floor(Math.random() * result.length)]; // This will select a word from the array of words
     // This will show the way
-    console.log(selectedWord);
+    // console.log(selectedWord);
 
-    let allTheLetters = ['a', 'e', 'i', 'o', 'u', 'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z'];
+    // let allTheLetters = ['a', 'e', 'i', 'o', 'u', 'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z'];
 
     const correctLetters = [];
     const wrongLetters = [];
@@ -52,7 +52,28 @@ getwords().then(function(result) { // This will return an array of words
 
     // Update the wrong letters
     function updateWrongLettersEl() {
-        console.log('Update wrong');
+        // Display wrong letters
+        wrongLettersEl.innerHTML = `
+            ${wrongLetters.length > 0 ? '<p>Wrong</p>' : ''}
+            ${wrongLetters.map(letter => `<span>${letter}</span>`)}
+        `;
+
+        // Display parts
+        figureParts.forEach((part, index) => {
+            const errors = wrongLetters.length;
+
+            if(index < errors) {
+                part.style.display = 'block';
+            } else {
+                part.style.display = 'none';
+            }
+        });
+
+        // Check if lost
+        if(wrongLetters.length === figureParts.length) {
+            finalMessage.innerText = 'Unfortunately you lost. 😔';
+            popup.style.display = 'flex';
+        }
     }
 
     // Show notification
@@ -87,6 +108,23 @@ getwords().then(function(result) { // This will return an array of words
                 }
             }
         }
+    });
+
+    // Restart game and play again
+    playAgainBtn.addEventListener('click', () => {
+        // Empty arrays
+        correctLetters.splice(0);
+        wrongLetters.splice(0);
+
+        selectedWord = result[Math.floor(Math.random() * result.length)];
+        // Magic word
+        // console.log(selectedWord);
+
+        displayWord();
+
+        updateWrongLettersEl();
+
+        popup.style.display = 'none';
     });
 
     displayWord();
