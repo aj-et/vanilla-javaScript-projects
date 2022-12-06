@@ -105,6 +105,9 @@ function addMealToDOM(meal) {
 submit.addEventListener('submit', searchMeal);
 random.addEventListener('click', getRandomMeal);
 
+const lclstrg = [];
+
+
 mealsEl.addEventListener('click', e => {
     const mealInfo = e.path.find(item => {
         if(item.classList) {
@@ -113,9 +116,21 @@ mealsEl.addEventListener('click', e => {
             return false;
         }
     });
-
+    
     if(mealInfo) {
         const mealID = mealInfo.getAttribute('data-mealid');
         getMealById(mealID);
+
+        // This will get the array of your searches
+        if (lclstrg.indexOf(mealID) === -1) {
+            lclstrg.push(mealID);
+            
+        }
+
+        
+        
+        // window.localStorage.setItem('mealID', JSON.stringify(lclstrg));
     }
+    lclstrg.slice(0, 5);
+    console.log(lclstrg);
 });
