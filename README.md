@@ -10,3 +10,5 @@
 * 100 Days of Code: The Complete Python Programming
 
 > For markdown syntax guide go to this [link](https://www.markdownguide.org/basic-syntax/).
+
+> I will study how to implement this also: [Music Player](https://developer.spotify.com/dashboard/applications).
