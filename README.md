@@ -12,3 +12,9 @@
 > For markdown syntax guide go to this [link](https://www.markdownguide.org/basic-syntax/).
 
 > I will study how to implement this also: [Music Player](https://developer.spotify.com/dashboard/applications).
+
+> Project Addition Ideas
+> * Hangman - add difficulty and dictionary functionality
+> * Meal Finder - Find a better API
+> * Music Player - Use Spotify API (possibly not vanilla, REACT)
+> * 
