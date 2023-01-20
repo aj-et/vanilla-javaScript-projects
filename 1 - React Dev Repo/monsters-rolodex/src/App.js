@@ -8,10 +8,10 @@ class App extends Component {
 
     this.state = {
       monsters: [
-        {name: 'Linda'},
-        {name: 'Frank'},
-        {name: 'Jacky'},
-        {name: 'Andrei'}
+        {name: 'Linda', id:'1'},
+        {name: 'Frank', id:'2'},
+        {name: 'Jacky', id:'3'},
+        {name: 'Andrei', id:'4'},
       ]
       
     };
@@ -20,9 +20,19 @@ class App extends Component {
   render() {
     return <div className="App">
         { 
-          this.state.monsters.map((monster) => { // What is the difference of map with forEach?
-          // Google states that map(), unlike forEach(), relies on immutability. That means that I can only use map() on unchangeable data in the array.
-            return <h1>{monster.name}</h1>;
+          this.state.monsters.map((monster) => { 
+          /* What is map()
+          
+          Google states that map() relies on immutability. Big advantage of map(), is that it creates new array. 
+          
+          Example:
+
+          const myArray = [1,2,3,4]
+          myArray.map(el => el + 1)  The array 'el' will be [2,3,4,5] but 'myArray' will still be [1,2,3,4]
+          */
+            return <div key={monster.id}>
+              <h1>{monster.name}</h1>
+            </div>;
         })}
       </div>
   }
