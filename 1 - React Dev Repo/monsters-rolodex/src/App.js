@@ -1,6 +1,5 @@
 import { Component } from 'react';
 
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
@@ -8,34 +7,24 @@ class App extends Component {
     super();
 
     this.state = {
-      name: {firstName: 'Aaron', lastName: 'Tumbokon'},
-      company: 'BYU-I'
-    }
+      monsters: [
+        {name: 'Linda'},
+        {name: 'Frank'},
+        {name: 'Jacky'},
+        {name: 'Andrei'}
+      ]
+      
+    };
   }
 
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Hi {this.state.name.firstName} {this.state.name.lastName}, I work at {this.state.company}
-          </p>
-          <button onClick={() => { this.setState(
-            () => {
-              return {
-                name: {firstName: 'Naomi', lastName: 'Villalon'},
-              };
-            }, 
-            () => {
-              console.log(this.state);
-            });
-          }}>
-            Change Name
-          </button>
-        </header>
+    return <div className="App">
+        { 
+          this.state.monsters.map((monster) => { // What is the difference of map with forEach?
+          // Google states that map(), unlike forEach(), relies on immutability. That means that I can only use map() on unchangeable data in the array.
+            return <h1>{monster.name}</h1>;
+        })}
       </div>
-    );
   }
 }
 
