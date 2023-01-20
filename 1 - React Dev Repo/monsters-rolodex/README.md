@@ -8,7 +8,7 @@ In the project directory, you can run:
 
 ### `npm install or npm i`
 
-Since package.json is already in the file, you will only need to run this code for the dependencies.\
+Since package.json is already in the file, you will only need to run this code for the dependencies.
 
 This will allow you to use the react-scripts code below.
 
