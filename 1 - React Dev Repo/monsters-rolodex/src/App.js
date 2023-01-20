@@ -7,6 +7,7 @@ class App extends Component {
     super();
 
     this.state = {
+      /* Today we are going to learn first about SPA or (S)ingle (P)age (A)pplications */
       monsters: [
         {name: 'Linda', id:'1'},
         {name: 'Frank', id:'2'},
