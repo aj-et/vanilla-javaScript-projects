@@ -3,6 +3,7 @@ import { Component } from 'react';
 import './App.css';
 
 class App extends Component {
+  // Constructor runs first
   constructor() {
     super();
 
@@ -12,11 +13,12 @@ class App extends Component {
     };
   }
 
+  // componentDidMount runs third
   componentDidMount() {
     fetch('https://jsonplaceholder.typicode.com/users')
       .then((response) => response.json())
       .then((users) => this.setState(() => { 
-        return { monsters: users }
+        return { monsters: users };
       },
       () => {
         console.log(this.state);
@@ -24,6 +26,7 @@ class App extends Component {
       ));
   }
 
+  // Render runs second then re-renders in fourth place
   render() {
     return <div className="App">
         { 
@@ -37,9 +40,9 @@ class App extends Component {
           const myArray = [1,2,3,4]
           myArray.map(el => el + 1)  The array 'el' will be [2,3,4,5] but 'myArray' will still be [1,2,3,4]
           */
-            return <div key={monster.id}>
+            return (<div key={monster.id}>
               <h1>{monster.name}</h1>
-            </div>;
+            </div>);
         })}
       </div>
   }
