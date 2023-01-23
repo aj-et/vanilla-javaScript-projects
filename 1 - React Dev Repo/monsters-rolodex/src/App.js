@@ -1,5 +1,6 @@
 import { Component } from 'react';
 
+import CardList from './components/card-list/card-list.component';
 import './App.css';
 
 // When creating an app, focus on functionality first then style.
@@ -67,20 +68,21 @@ class App extends Component {
           onChange={onSearchChange} 
         />
 
-        { filteredMonsters.map((monster) => { 
-          /* What is map()
+        {/* { filteredMonsters.map((monster) => { 
+          >> What is map()
           
-          Google states that map() relies on immutability. Big advantage of map(), is that it creates new array. 
+          >> Google states that map() relies on immutability. Big advantage of map(), is that it creates new array. 
           
-          Example:
+          >> Example:
 
-          const myArray = [1,2,3,4]
-          myArray.map(el => el + 1)  The array 'el' will be [2,3,4,5] but 'myArray' will still be [1,2,3,4]
-          */
+          >> const myArray = [1,2,3,4]
+          >> myArray.map(el => el + 1)  The array 'el' will be [2,3,4,5] but 'myArray' will still be [1,2,3,4]
+
             return (<div key={monster.id}>
               <h1>{monster.name}</h1>
             </div>);
-        })}
+        })} */}
+        <CardList />
       </div>
     );
   }
