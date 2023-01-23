@@ -31,12 +31,27 @@ class App extends Component {
       ));
   }
 
+  // This will only initialize once
+  // This makes app a bit faster 
+  onSearchChange = (event) => {
+    const searchField = event.target.value.toLocaleLowerCase();
+
+    this.setState(() => {
+      return { searchField };
+    });
+  }
+
   // Render runs second then re-renders in fourth place
   render() {
     console.log('render');
 
+    // Destructuring Es6. this makes code readable
+    const { monsters, searchField} = this.state;
+    const { onSearchChange } = this;
+
     // Always filter from the full list. go to state 'searchField'
-    const filteredMonsters = this.state.monsters.filter((monster) => { return monster.name.toLocaleLowerCase().includes(this.state.searchField); 
+    const filteredMonsters = monsters.filter((monster) => { 
+      return monster.name.toLocaleLowerCase().includes(searchField); 
     });
 
 
@@ -45,17 +60,11 @@ class App extends Component {
         <input 
           className='search-box' 
           type='search' 
-          placeholder='search monsters' 
-          onChange={(event) => {
-            // console.log({startingArray: this.state.monsters});
-            const searchField = event.target.value.toLocaleLowerCase();
+          placeholder='search monsters'
 
-            this.setState(() => {
-              return { searchField };
-            }
-            // , () => {console.log({endingArray: this.state.monsters});}
-            );
-          }} />
+          // No more reinitializing anonymous function
+          onChange={onSearchChange} 
+        />
 
         { filteredMonsters.map((monster) => { 
           /* What is map()
