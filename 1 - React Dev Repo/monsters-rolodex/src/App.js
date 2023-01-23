@@ -16,12 +16,12 @@ class App extends Component {
       monsters: [],
       searchField: ''
     };
-    console.log('constructor');
+    // console.log('constructor');
   }
 
   // componentDidMount runs third
   componentDidMount() {
-    console.log('componentDidMount');
+    // console.log('componentDidMount');
     fetch('https://jsonplaceholder.typicode.com/users')
       .then((response) => response.json())
       .then((users) => this.setState(() => { 
@@ -45,7 +45,7 @@ class App extends Component {
 
   // Render runs second then re-renders in fourth place
   render() {
-    console.log('render');
+    // console.log('render');
 
     // Destructuring Es6. this makes code readable
     const { monsters, searchField} = this.state;
@@ -63,9 +63,7 @@ class App extends Component {
           className='search-box' 
           type='search' 
           placeholder='search monsters'
-
-          // No more reinitializing anonymous function
-          onChange={onSearchChange} 
+          onChange={onSearchChange} // No more reinitializing anonymous function
         />
 
         {/* { filteredMonsters.map((monster) => { 
@@ -82,7 +80,7 @@ class App extends Component {
               <h1>{monster.name}</h1>
             </div>);
         })} */}
-        <CardList />
+        <CardList monsters={filteredMonsters} />
       </div>
     );
   }
