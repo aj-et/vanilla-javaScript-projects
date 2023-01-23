@@ -24,13 +24,11 @@ class App extends Component {
     // console.log('componentDidMount');
     fetch('https://jsonplaceholder.typicode.com/users')
       .then((response) => response.json())
-      .then((users) => this.setState(() => { 
-        return { monsters: users };
-      },
-      () => {
-        // console.log(this.state);
-      }
-      ));
+      .then((users) => 
+        this.setState(() => { 
+          return { monsters: users };
+        })
+      );
   }
 
   // This will only initialize once
@@ -45,7 +43,7 @@ class App extends Component {
 
   // Render runs second then re-renders in fourth place
   render() {
-    // console.log('render');
+    // console.log('render from AppJS');
 
     // Destructuring Es6. this makes code readable
     const { monsters, searchField} = this.state;
