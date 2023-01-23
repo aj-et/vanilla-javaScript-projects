@@ -4,6 +4,7 @@ import './App.css';
 
 // When creating an app, focus on functionality first then style.
 
+// Component governs a piece of UI
 class App extends Component {
   // Constructor runs first
   constructor() {
