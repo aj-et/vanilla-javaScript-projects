@@ -12,6 +12,7 @@ class App extends Component {
     this.state = {
       /* Today we are going to learn first about SPA or (S)ingle (P)age (A)pplications */
       monsters: [],
+      searchField: ''
     };
     console.log('constructor');
   }
@@ -33,6 +34,12 @@ class App extends Component {
   // Render runs second then re-renders in fourth place
   render() {
     console.log('render');
+
+    // Always filter from the full list. go to state 'searchField'
+    const filteredMonsters = this.state.monsters.filter((monster) => { return monster.name.toLocaleLowerCase().includes(this.state.searchField); 
+    });
+
+
     return (
       <div className='App'>
         <input 
@@ -40,16 +47,17 @@ class App extends Component {
           type='search' 
           placeholder='search monsters' 
           onChange={(event) => {
-            const searchString = event.target.value.toLocaleLowerCase();
-            const filteredMonsters = this.state.monsters.filter((monster) => { return monster.name.toLocaleLowerCase().includes(searchString); })
+            // console.log({startingArray: this.state.monsters});
+            const searchField = event.target.value.toLocaleLowerCase();
 
             this.setState(() => {
-              return { monsters: filteredMonsters };
-            })
-          // console.log(event.target.value);
-          // this.state.monsters.filter(el => el.includes(event.target.value))
+              return { searchField };
+            }
+            // , () => {console.log({endingArray: this.state.monsters});}
+            );
           }} />
-        { this.state.monsters.map((monster) => { 
+
+        { filteredMonsters.map((monster) => { 
           /* What is map()
           
           Google states that map() relies on immutability. Big advantage of map(), is that it creates new array. 
