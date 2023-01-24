@@ -1,6 +1,7 @@
 import { Component } from 'react';
 
 import CardList from './components/card-list/card-list.component';
+import SearchBox from './components/search-box/search-box.component';
 import './App.css';
 
 // When creating an app, focus on functionality first then style.
@@ -57,12 +58,11 @@ class App extends Component {
 
     return (
       <div className='App'>
-        <input 
-          className='search-box' 
-          type='search' 
-          placeholder='search monsters'
-          onChange={onSearchChange} // No more reinitializing anonymous function
-        />
+      <SearchBox
+        className='search-box'
+        onChangeHandler={onSearchChange}
+        placeholder='search monsters' 
+      />
 
         {/* { filteredMonsters.map((monster) => { 
           >> What is map()
