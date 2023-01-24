@@ -7,7 +7,7 @@ class CardList extends Component {
         const { monsters } = this.props;
         // Cannot have multiple parent level components here
         return (
-            <div>
+            <div className='card-list'>
                 {monsters.map(monster => (
                     <h1 key={monster.id}>{monster.name}</h1>
                 ))}
