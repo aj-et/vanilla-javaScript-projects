@@ -13,7 +13,7 @@ import './App.css';
 // impure functions produce side effects
 
 const App = () => {
-
+  console.log('render');
   const [searchField, setSearchField] = useState(''); // [value, setValue]
   console.log(searchField);
 
