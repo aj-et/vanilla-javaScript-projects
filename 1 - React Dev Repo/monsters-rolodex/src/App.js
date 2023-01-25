@@ -1,4 +1,6 @@
-import { Component } from 'react';
+// import { Component } from 'react'; Functional component dont need this
+
+import { useState } from 'react'; // This is a hook
 
 import CardList from './components/card-list/card-list.component';
 import SearchBox from './components/search-box/search-box.component';
@@ -7,18 +9,31 @@ import './App.css';
 // THIS IS THE APP FUNCTIONAL COMPONENT
 // Functional component runs like a normal JS
 // No lifecyle
+// We use hooks that creates impure functions
+// impure functions produce side effects
 
 const App = () => {
+
+  const [searchField, setSearchField] = useState(''); // [value, setValue]
+  console.log(searchField);
+
+  const onSearchChange = (event) => {
+    const searchFieldString = event.target.value.toLocaleLowerCase();
+    setSearchField(searchFieldString);
+
+  }
 
   return(
     <div className='App'>
       <h1 className='app-title'>Monsters Rolodex</h1>
 
-      {/* <SearchBox
+      <SearchBox
         className='monsters-search-box'
         onChangeHandler={onSearchChange}
         placeholder='search monsters' 
       />
+
+      {/* 
       
       <CardList monsters={filteredMonsters} /> */}
     </div>
