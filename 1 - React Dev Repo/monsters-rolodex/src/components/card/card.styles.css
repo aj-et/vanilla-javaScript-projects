@@ -19,5 +19,10 @@
   @media (max-width: 900px) {
     .card-container {
       display: block;
+
+    }
+
+    .mons-img {
+      width: 180px;
     }
   }
