@@ -14,7 +14,7 @@ import './App.css';
 
 const App = () => {
   console.log('render');
-  const [searchField, setSearchField] = useState(''); // [value, setValue]
+  const [searchField, setSearchField] = useState('a'); // [value, setValue]
   console.log(searchField);
 
   const onSearchChange = (event) => {
