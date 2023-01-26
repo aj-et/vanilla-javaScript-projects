@@ -1,6 +1,6 @@
 // import { Component } from 'react'; Functional component dont need this
 
-import { useState } from 'react'; // This is a hook
+import { useState, useEffect } from 'react'; // This is a hook
 
 import CardList from './components/card-list/card-list.component';
 import SearchBox from './components/search-box/search-box.component';
@@ -13,15 +13,28 @@ import './App.css';
 // impure functions produce side effects
 
 const App = () => {
-  console.log('render');
-  const [searchField, setSearchField] = useState('a'); // [value, setValue]
-  console.log(searchField);
+  const [searchField, setSearchField] = useState(''); // [value, setValue]
+  const [monsters, setMonsters] = useState([]);
+  const [filteredMonsters, setFilteredMonsters] = useState(monsters);
+
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then((response) => response.json())
+      .then((users) => setMonsters(users));
+  }, []);
+
+  useEffect(() => {
+    const newFilteredMonsters = monsters.filter((monster) => { 
+      return monster.name.toLocaleLowerCase().includes(searchField); 
+    });
+
+    setFilteredMonsters(newFilteredMonsters);
+  }, [monsters, searchField]);
 
   const onSearchChange = (event) => {
     const searchFieldString = event.target.value.toLocaleLowerCase();
     setSearchField(searchFieldString);
-
-  }
+  };
 
   return(
     <div className='App'>
@@ -32,10 +45,6 @@ const App = () => {
         onChangeHandler={onSearchChange}
         placeholder='search monsters' 
       />
-
-      {/* 
-      
-      <CardList monsters={filteredMonsters} /> */}
     </div>
   );
 }
