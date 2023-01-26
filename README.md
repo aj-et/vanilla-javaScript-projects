@@ -1,5 +1,5 @@
 # online-course-projects
- This will contain all of my Udemy Course projects
+ This will contain all of my Online Course projects
 
 ## Projects
 * Complete React Developer in 2023
