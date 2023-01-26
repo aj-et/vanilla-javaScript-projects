@@ -1,20 +1,19 @@
 const Person = props => {
     return React.createElement('div', {}, [
-        React.createElement('h1', {}, props.name),
-        React.createElement('p', {}, props.occupation)
+        React.createElement('h1', { key: 1 }, props.name),
+        React.createElement('p', { key: 2 }, props.occupation)
     ])
 };
 
 const App = () => {
     return React.createElement('div', {}, [
-        React.createElement('h1', {class: 'title'}, 'React IS rendered'),
-        React.createElement(Person, {name: 'Aaron', occupation: 'VoIP Engineer'}, null),
-        React.createElement(Person, {name: 'Naomi', occupation: 'DSO Processor'}, null),
-        React.createElement(Person, {name: 'Alfonso', occupation: 'Food Services'}, null),
+        React.createElement('h1', {className: 'title', key: 3 }, 'React IS rendered'),
+        React.createElement(Person, {name: 'Aaron', occupation: 'VoIP Engineer', key: 4}, null),
+        React.createElement(Person, {name: 'Naomi', occupation: 'DSO Processor', key: 5}, null),
+        React.createElement(Person, {name: 'Alfonso', occupation: 'Food Services', key: 6}, null),
     ]);
 };
 
-ReactDOM.render(
-    React.createElement(App),
-    document.getElementById('root')
-);
+const container = document.getElementById('root');
+const root = ReactDOM.createRoot(container);
+root.render(React.createElement(App));
