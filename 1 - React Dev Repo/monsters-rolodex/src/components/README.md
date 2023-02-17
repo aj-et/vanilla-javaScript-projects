@@ -1,2 +1,0 @@
-** Components
-*** Components encapsulates functionality
